@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Nostra Storia - Olio di Valeria</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fff;
+            color: #333;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        /* Header */
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+            padding: 0 20px;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #eab308;
+        }
+
+        .nav-links a.active {
+            color: #eab308;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #eab308;
+        }
+
+        .shop-btn {
+            background: linear-gradient(135deg, #eab308, #f59e0b);
+            color: #000;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(234, 179, 8, 0.3);
+        }
+
+        .shop-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(234, 179, 8, 0.4);
+        }
+
+        /* Hero Banner */
+        .hero-banner {
+            background: linear-gradient(135deg, rgba(234, 179, 8, 0.1) 0%, rgba(234, 179, 8, 0.05) 100%);
+            padding: 8rem 0 4rem;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%23eab308" opacity="0.1"/><circle cx="80" cy="40" r="1.5" fill="%23eab308" opacity="0.1"/><circle cx="40" cy="80" r="1" fill="%23eab308" opacity="0.1"/></svg>');
+        }
+
+        .hero-content {
+            position: relative;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: #eab308;
+            color: #fff;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            padding: 5rem 0;
+            background: #fff;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #eab308, #f59e0b);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 45%;
+            position: relative;
+            border: 2px solid #eab308;
+        }
+
+        .timeline-year {
+            background: #eab308;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .timeline-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-text {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            background: #eab308;
+            border: 4px solid #fff;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 0 4px #eab308;
+        }
+
+        /* Location Showcase */
+        .location-showcase {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, rgba(234, 179, 8, 0.05) 0%, rgba(234, 179, 8, 0.1) 100%);
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .showcase-content h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+
+        .showcase-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #eab308;
+            display: block;
+        }
+
+        .stat-label {
+            color: #666;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        .showcase-visual {
+            background: linear-gradient(45deg, #eab308, #f59e0b);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .showcase-visual::before {
+            content: '🫒';
+            font-size: 8rem;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.2;
+        }
+
+        .visual-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .visual-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .visual-text {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Varieties Section */
+        .varieties-section {
+            padding: 5rem 0;
+            background: #fff;
+        }
+
+        .varieties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .variety-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 3px solid transparent;
+        }
+
+        .variety-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(234, 179, 8, 0.2);
+            border-color: #eab308;
+        }
+
+        .variety-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #eab308, #f59e0b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: #fff;
+        }
+
+        .variety-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .variety-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Quality Standards */
+        .quality-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #333 0%, #444 100%);
+            color: #fff;
+        }
+
+        .quality-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quality-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .quality-icon {
+            width: 70px;
+            height: 70px;
+            background: #eab308;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .quality-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #eab308;
+        }
+
+        .quality-text {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 5rem 0;
+            background: #fff;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, rgba(234, 179, 8, 0.1), rgba(234, 179, 8, 0.05));
+            padding: 3rem;
+            border-radius: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: #eab308;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .contact-details h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-details p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                flex-direction: column !important;
+                align-items: flex-start;
+                padding-left: 50px;
+            }
+
+            .timeline-content {
+                width: 100%;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+
+            .showcase-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .showcase-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+        /* Footer */
+        .footer {
+            background: #fff;
+            border-top: 4px solid #eab308;
+            padding: 48px 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+            margin-bottom: 48px;
+        }
+
+        .footer-section h4 {
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 16px;
+            font-size: 1.125rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .footer-logo img {
+            height: 40px;
+        }
+
+        .footer-description {
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .footer-details {
+            font-size: 14px;
+            color: #9ca3af;
+        }
+
+        .footer-details p {
+            margin-bottom: 4px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #6b7280;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #eab308;
+        }
+
+        .footer-contact {
+            font-size: 14px;
+        }
+
+        .footer-contact p {
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .footer-contact strong {
+            color: #000;
+        }
+
+        .social-media {
+            margin-top: 8px;
+        }
+
+        .social-description {
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 16px;
+            line-height: 1.4;
+        }
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .social-link.facebook {
+            background: linear-gradient(135deg, #1877f2, #42a5f5);
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(24, 119, 242, 0.2);
+        }
+
+        .social-link.facebook:hover {
+            background: linear-gradient(135deg, #166fe5, #1976d2);
+            transform: translateY(-2px);
+        }
+
+        .social-link.instagram {
+            background: linear-gradient(135deg, #e4405f, #f77737, #fcaf45);
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(228, 64, 95, 0.2);
+        }
+
+        .social-link.instagram:hover {
+            background: linear-gradient(135deg, #d73447, #e91e63, #ff9800);
+            transform: translateY(-2px);
+        }
+
+        .social-link i {
+            font-size: 18px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #e5e7eb;
+            padding: 32px 0;
+        }
+
+        .footer-bottom-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-copyright {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .footer-social-mobile {
+            display: none;
+            gap: 12px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon.facebook {
+            background: #1877f2;
+            color: #fff;
+        }
+
+        .social-icon.instagram {
+            background: linear-gradient(135deg, #e4405f, #f77737);
+            color: #fff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .shop-hero h1 {
+                font-size: 2rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .cart-sidebar {
+                width: 100vw;
+                right: -100vw;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
+            }
+
+            .footer-bottom-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-social-mobile {
+                display: flex;
+            }
+
+            .social-links {
+                flex-direction: row;
+                gap: 8px;
+            }
+
+            .social-link span {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="oliodivaleriaws.html">
+                        <img src="odvlogo.png" alt="l'Olio di Valeria">
+                    </a>
+                </div>
+
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="oliodivaleriaws.html">Home</a></li>
+                        <li><a href="shop.html">Prodotti</a></li>
+                        <li><a href="chisiamo.html">Chi Siamo</a></li>
+                        <li><a href="contatti.html">Contatti</a></li>
+                        <li><a href="aziendaagr.html" class="active">L'Azienda Agricola</a></li>
+                    </ul>
+                </nav>
+
+                <a href="shop.html" class="shop-btn">
+                    <i class="fas fa-shopping-bag"></i>
+                    Shop
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb">
+        <div class="container">
+            <nav class="breadcrumb-nav">
+                <a href="oliodivaleriaws.html">Home</a>
+                <i class="fas fa-chevron-right"></i>
+                <span class="current">Contatti</span>
+            </nav>
+        </div>
+    </section>
+
+    <section class="hero-banner">
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-badge">Dal 1987</span>
+                <h1 class="hero-title">Tradizione Siciliana</h1>
+                <p class="hero-subtitle">Un viaggio attraverso tre decenni di passione per l'olio extravergine di oliva nelle terre di San Biagio Platani</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="timeline-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Il Nostro Percorso</h2>
+                <p class="section-description">Dalla piccola azienda familiare di 3 ettari alla realtà di oggi con 11 ettari coltivati</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-year">1987</span>
+                        <h3 class="timeline-title">L'Inizio</h3>
+                        <p class="timeline-text">Nasce l'Azienda Agricola Olio di Valeria con soli 3 ettari di terreno, portando avanti una tradizione olivicola secolare nelle terre di San Biagio Platani.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-year">2000s</span>
+                        <h3 class="timeline-title">Crescita e Certificazioni</h3>
+                        <p class="timeline-text">Espansione a 11 ettari e ottenimento delle certificazioni biologiche e vegane. Riconoscimento da parte di Slow Food per la qualità eccellente.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-year">2019</span>
+                        <h3 class="timeline-title">Espansione Europea</h3>
+                        <p class="timeline-text">Inizio delle esportazioni in Europa, portando l'eccellenza siciliana nei mercati internazionali più esigenti.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-year">Oggi</span>
+                        <h3 class="timeline-title">Eccellenza Riconosciuta</h3>
+                        <p class="timeline-text">Parte del Distretto Rurale di Qualità dei Sicani, con una produzione limitata di circa 5.000 litri annui destinata ai mercati gourmet.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="location-showcase">
+        <div class="container">
+            <div class="showcase-grid">
+                <div class="showcase-content">
+                    <h2>Il Nostro Territorio</h2>
+                    <p>Situati in Contrada Serre, a 550 metri di altitudine e a soli 30 km dal mare, nella suggestiva Valle del Platani. Un microclima unico che dona al nostro olio caratteristiche organolettiche eccezionali.</p>
+                    
+                    <div class="showcase-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">550m</span>
+                            <span class="stat-label">Altitudine</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">30km</span>
+                            <span class="stat-label">Dal Mare</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">11</span>
+                            <span class="stat-label">Ettari</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">10000L+</span>
+                            <span class="stat-label">Produzione Annua</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="showcase-visual">
+                    <div class="visual-content">
+                        <h3 class="visual-title">Valle del Platani</h3>
+                        <p class="visual-text">Un paesaggio mozzafiato dove tradizione e natura si incontrano per creare l'olio perfetto</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="varieties-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Le Nostre Cultivar</h2>
+                <p class="section-description">Tre varietà autoctone siciliane che si fondono in un blend unico per aroma, sapore e colore</p>
+            </div>
+
+            <div class="varieties-grid">
+                <div class="variety-card">
+                    <div class="variety-icon">🌿</div>
+                    <h3 class="variety-name">Biancolilla</h3>
+                    <p class="variety-description">Cultivar tipica siciliana che conferisce al nostro olio note delicate e un profumo fruttato inconfondibile.</p>
+                </div>
+
+                <div class="variety-card">
+                    <div class="variety-icon">🫒</div>
+                    <h3 class="variety-name">Nocellara</h3>
+                    <p class="variety-description">Varietà robusta che dona struttura e corpo all'olio, con sentori erbacei e un retrogusto leggermente piccante.</p>
+                </div>
+
+                <div class="variety-card">
+                    <div class="variety-icon">✨</div>
+                    <h3 class="variety-name">San Benedetto</h3>
+                    <p class="variety-description">Cultivar pregiata che arricchisce il blend con note aromatiche complesse e un colore dorato intenso.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="quality-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" style="color: #fff;">Standard di Eccellenza</h2>
+                <p class="section-description" style="color: #ccc;">Ogni bottiglia rispecchia il nostro impegno per la qualità superiore</p>
+            </div>
+
+            <div class="quality-grid">
+                <div class="quality-item">
+                    <div class="quality-icon">🏆</div>
+                    <h3 class="quality-title">Acidità < 0.35%</h3>
+                    <p class="quality-text">Acidità estremamente bassa che garantisce freschezza e purezza del prodotto</p>
+                </div>
+
+                <div class="quality-item">
+                    <div class="quality-icon">🌡️</div>
+                    <h3 class="quality-title">Estrazione < 27°C</h3>
+                    <p class="quality-text">Spremitura a freddo per preservare tutte le proprietà organolettiche</p>
+                </div>
+
+                <div class="quality-item">
+                    <div class="quality-icon">⚡</div>
+                    <h3 class="quality-title">Raccolta Immediata</h3>
+                    <p class="quality-text">Olive spremute entro poche ore dalla raccolta manuale</p>
+                </div>
+
+                <div class="quality-item">
+                    <div class="quality-icon">🧪</div>
+                    <h3 class="quality-title">Alti Polifenoli</h3>
+                    <p class="quality-text">Ricco di antiossidanti naturali per benefici salutistici superiori</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Dove Trovarci</h2>
+                <p class="section-description">Due sedi per servire al meglio la nostra produzione e i nostri clienti</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">🏡</div>
+                        <div class="contact-details">
+                            <h4>Sede Amministrativa</h4>
+                            <p>Contrada Serre 19<br>92020 San Biagio Platani (AG)<br>Sicilia, Italia</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">🏭</div>
+                        <div class="contact-details">
+                            <h4>Impianto di Imbottigliamento</h4>
+                            <p>Via Alcide De Gasperi 4<br>92020 San Biagio Platani (AG)<br>Sicilia, Italia</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-details">
+                            <h4>Telefono</h4>
+                            <p>+39 327 309 8513</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>info@oliodivaleria.it</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">🏅</div>
+                        <div class="contact-details">
+                            <h4>Certificazioni</h4>
+                            <p>Biologico Certificato<br>Slow Food<br>Distretto Rurale Sicani</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="odvlogo.png" alt="l'Olio di Valeria">
+                    </div>
+                    <p class="footer-description">
+                        Tradizione siciliana dal 1987. Olio extravergine di oliva di qualità superiore dalle terre di San Biagio Platani.
+                    </p>
+                    <div class="footer-details">
+                        <p>P.IVA: 02957530849</p>
+                        <p>Cod. Fisc.: LCTVLR81D62Z112B</p>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Prodotti</h4>
+                    <ul class="footer-links">
+                        <li><a href="#products">Olio Classico Siciliano</a></li>
+                        <li><a href="#products">Olio Biologico Premium</a></li>
+                        <li><a href="#products">Olio Aromatizzato</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Azienda</h4>
+                    <ul class="footer-links">
+                        <li><a href="chisiamo.html">Chi Siamo</a></li>
+                        <li><a href="aziendaagr.html">La Nostra Storia</a></li>
+                        <li><a href="#">Certificazioni</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contatti</h4>
+                    <div class="footer-contact">
+                        <p>
+                            <strong>Sede Operativa:</strong><br>
+                            Via Alcide De Gasperi, 4<br>
+                            92020 San Biagio Platani (AG)
+                        </p>
+                        <p>
+                            <strong>Tel:</strong> +39 327 309 8513<br>
+                            <strong>Tel:</strong> +39 339 530 5990
+                        </p>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Seguici Su</h4>
+                    <div class="social-media">
+                        <p class="social-description">Resta aggiornato sulle nostre novità</p>
+                        <div class="social-links">
+                            <a href="https://www.facebook.com/OliodiValeria/?locale=it_IT" target="_blank" rel="noopener noreferrer" class="social-link facebook">
+                                <i class="fab fa-facebook-f"></i>
+                                <span>Facebook</span>
+                            </a>
+                            <a href="https://www.instagram.com/oliodivaleria/" target="_blank" rel="noopener noreferrer" class="social-link instagram">
+                                <i class="fab fa-instagram"></i>
+                                <span>Instagram</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p class="footer-copyright">
+                        &copy; 2024 l'Olio di Valeria - San Biagio Platani (AG). Tutti i diritti riservati.
+                    </p>
+                    <div class="footer-social-mobile">
+                        <a href="https://www.facebook.com/OliodiValeria/?locale=it_IT" target="_blank" rel="noopener noreferrer" class="social-icon facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/oliodivaleria/" target="_blank" rel="noopener noreferrer" class="social-icon instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

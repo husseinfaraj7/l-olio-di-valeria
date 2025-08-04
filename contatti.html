@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contatti - l'Olio di Valeria | Parliamo di Olio Siciliano</title>
+    <meta name="description" content="Contatta l'Olio di Valeria per informazioni sui nostri oli extravergini siciliani, ordini e collaborazioni. Siamo qui per condividere la passione per l'olio di qualità.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fff;
+            color: #333;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+            padding: 0 20px;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #eab308;
+        }
+
+        .nav-links a.active {
+            color: #eab308;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #eab308;
+        }
+
+        .shop-btn {
+            background: linear-gradient(135deg, #eab308, #f59e0b);
+            color: #000;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(234, 179, 8, 0.3);
+        }
+
+        .shop-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(234, 179, 8, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(55, 65, 81, 0.8)), 
+                        url('/placeholder.svg?height=500&width=1200&text=Sicilian+Olive+Oil+Contact') center/cover;
+            color: #fff;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(234, 179, 8, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(234, 179, 8, 0.2);
+            border: 2px solid #eab308;
+            color: #eab308;
+            padding: 8px 24px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 24px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: #d1d5db;
+            margin-bottom: 32px;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: #f9fafb;
+            padding: 16px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .breadcrumb-nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .breadcrumb-nav a {
+            color: #6b7280;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb-nav a:hover {
+            color: #eab308;
+        }
+
+        .breadcrumb-nav .current {
+            color: #eab308;
+            font-weight: 500;
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 80px 0;
+        }
+
+        .content-section.gray {
+            background: #f9fafb;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: rgba(234, 179, 8, 0.1);
+            color: #eab308;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .section-divider {
+            width: 80px;
+            height: 4px;
+            background: #eab308;
+            margin: 0 auto 24px;
+        }
+
+        .section-description {
+            font-size: 1.125rem;
+            color: #6b7280;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Contact Form Section */
+        .contact-form-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .contact-form {
+            background: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 2px solid #f3f4f6;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #fff;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: #eab308;
+            box-shadow: 0 0 0 3px rgba(234, 179, 8, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-submit {
+            width: 100%;
+            background: linear-gradient(135deg, #eab308, #f59e0b);
+            color: #000;
+            border: none;
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(234, 179, 8, 0.3);
+        }
+
+        .form-submit:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            padding: 20px 0;
+        }
+
+        .contact-intro {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            padding: 32px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            border-left: 6px solid #eab308;
+        }
+
+        .contact-intro h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 16px;
+        }
+
+        .contact-intro p {
+            color: #374151;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .contact-details {
+            display: grid;
+            gap: 32px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 24px;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid #f3f4f6;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border-color: #eab308;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #eab308, #f59e0b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #000;
+            flex-shrink: 0;
+        }
+
+        .contact-content h4 {
+            font-size: 1.125rem;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 8px;
+        }
+
+        .contact-content p {
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 4px;
+        }
+
+        .contact-content a {
+            color: #eab308;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-content a:hover {
+            text-decoration: underline;
+        }
+
+        /* Map Section */
+        .map-section {
+            background: #f9fafb;
+            padding: 80px 0;
+        }
+
+        .map-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .map-info h3 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 16px;
+        }
+
+        .map-info p {
+            color: #6b7280;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .location-details {
+            background: #fff;
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .location-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .location-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .location-icon {
+            width: 40px;
+            height: 40px;
+            background: #eab308;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: #000;
+        }
+
+        .location-text {
+            flex: 1;
+        }
+
+        .location-text strong {
+            color: #000;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .location-text span {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .map-placeholder {
+            background: linear-gradient(135deg, #e5e7eb, #d1d5db);
+            border-radius: 20px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280;
+            font-size: 18px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('/placeholder.svg?height=400&width=500&text=San+Biagio+Platani+Map') center/cover;
+            opacity: 0.7;
+        }
+
+        /* Social CTA Section */
+        .social-cta {
+            background: linear-gradient(135deg, #000 0%, #374151 100%);
+            color: #fff;
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(234, 179, 8, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .social-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .social-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .social-description {
+            font-size: 1.125rem;
+            color: #d1d5db;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            min-width: 160px;
+            justify-content: center;
+        }
+
+        .social-link.facebook {
+            background: #1877f2;
+            color: #fff;
+        }
+
+        .social-link.instagram {
+            background: linear-gradient(135deg, #e4405f, #f77737);
+            color: #fff;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .newsletter-signup {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 32px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .newsletter-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .newsletter-description {
+            color: #d1d5db;
+            margin-bottom: 24px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 12px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            placeholder-color: #d1d5db;
+        }
+
+        .newsletter-input::placeholder {
+            color: #d1d5db;
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: #eab308;
+        }
+
+        .newsletter-btn {
+            background: #eab308;
+            color: #000;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-btn:hover {
+            background: #f59e0b;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: #fff;
+            border-top: 4px solid #eab308;
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 20px;
+            font-size: 1.125rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .footer-logo img {
+            height: 40px;
+        }
+
+        .footer-description {
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .footer-details {
+            font-size: 14px;
+            color: #9ca3af;
+        }
+
+        .footer-details p {
+            margin-bottom: 4px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #6b7280;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #eab308;
+        }
+
+        .footer-contact {
+            font-size: 14px;
+        }
+
+        .footer-contact p {
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .footer-contact strong {
+            color: #000;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #e5e7eb;
+            padding-top: 30px;
+            text-align: center;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        /* Success Message */
+        .success-message {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #fff;
+            padding: 16px 24px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            display: none;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .success-message.show {
+            display: flex;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .contact-form-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .map-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .social-link {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-input,
+            .newsletter-btn {
+                width: 100%;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="oliodivaleriaws.html">
+                        <img src="odvlogo.png" alt="l'Olio di Valeria">
+                    </a>
+                </div>
+
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="oliodivaleriaws.html">Home</a></li>
+                        <li><a href="shop.html">Prodotti</a></li>
+                        <li><a href="chisiamo.html">Chi Siamo</a></li>
+                        <li><a href="contatti.html" class="active">Contatti</a></li>
+                        <li><a href="aziendaagr.html">L'Azienda Agricola</a></li>
+                    </ul>
+                </nav>
+
+                <a href="shop.html" class="shop-btn">
+                    <i class="fas fa-shopping-bag"></i>
+                    Shop
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb">
+        <div class="container">
+            <nav class="breadcrumb-nav">
+                <a href="index.html">Home</a>
+                <i class="fas fa-chevron-right"></i>
+                <span class="current">Contatti</span>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">Parliamo di Olio Siciliano</div>
+                <h1>Mettiamoci in Contatto</h1>
+                <p class="hero-subtitle">
+                    Siamo qui per condividere la nostra passione per l'olio extravergine siciliano. 
+                    Che tu abbia domande sui nostri prodotti, voglia saperne di più sulla nostra storia 
+                    o sia interessato a collaborazioni, saremo felici di sentirti.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="content-section">
+        <div class="container">
+            <div class="contact-form-section">
+                <!-- Contact Form -->
+                <div>
+                    <div class="section-header" style="text-align: left; margin-bottom: 40px;">
+                        <div class="section-badge">Scrivici</div>
+                        <h2 class="section-title" style="font-size: 2rem;">Invia un Messaggio</h2>
+                        <p class="section-description" style="margin: 0;">
+                            Compila il modulo e ti risponderemo il prima possibile. 
+                            Ogni messaggio è importante per noi.
+                        </p>
+                    </div>
+
+                    <form class="contact-form" id="contactForm">
+                        <div class="success-message" id="successMessage">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Grazie per il tuo messaggio! Ti risponderemo presto.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name" class="form-label">Nome *</label>
+                            <input type="text" id="name" name="name" class="form-input" required placeholder="Il tuo nome">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email *</label>
+                            <input type="email" id="email" name="email" class="form-input" required placeholder="la.tua.email@esempio.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inquiry" class="form-label">Tipo di Richiesta</label>
+                            <select id="inquiry" name="inquiry" class="form-select">
+                                <option value="generale">Informazioni Generali</option>
+                                <option value="ordini">Ordini e Spedizioni</option>
+                                <option value="wholesale">Collaborazioni e Ingrosso</option>
+                                <option value="visite">Visite in Azienda</option>
+                                <option value="altro">Altro</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" class="form-label">Messaggio *</label>
+                            <textarea id="message" name="message" class="form-textarea" required placeholder="Raccontaci come possiamo aiutarti..."></textarea>
+                        </div>
+
+                        <button type="submit" class="form-submit">
+                            <i class="fas fa-paper-plane"></i>
+                            Invia Messaggio
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <div class="contact-intro">
+                        <h3>Siamo Qui per Te</h3>
+                        <p>
+                            Come famiglia siciliana, crediamo nel valore delle relazioni autentiche. 
+                            Che tu sia un appassionato di olio extravergine, un ristoratore alla ricerca 
+                            di qualità superiore, o semplicemente curioso della nostra storia, 
+                            siamo sempre felici di condividere la nostra passione.
+                        </p>
+                        <p>
+                            <strong>Non esitare a contattarci</strong> - ogni conversazione è un'opportunità 
+                            per far conoscere l'autentico sapore della Sicilia.
+                        </p>
+                    </div>
+
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-content">
+                                <h4>Email</h4>
+                                <p><a href="mailto:info@oliodivaleria.it">info@oliodivaleria.it</a></p>
+                                <p>Rispondiamo entro 24 ore</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-content">
+                                <h4>Telefono</h4>
+                                <p><a href="tel:+393273098513">+39 327 309 8513</a></p>
+                                <p><a href="tel:+393395305990">+39 339 530 5990</a></p>
+                                <p>Lun-Ven: 9:00-18:00</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-content">
+                                <h4>Sede Operativa</h4>
+                                <p>Via Alcide De Gasperi, 4</p>
+                                <p>92020 San Biagio Platani (AG)</p>
+                                <p>Sicilia, Italia</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-content">
+                                <h4>Orari di Apertura</h4>
+                                <p>Lunedì - Venerdì: 9:00 - 18:00</p>
+                                <p>Sabato: 9:00 - 13:00</p>
+                                <p>Domenica: Chiuso</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <div class="map-container">
+                <div class="map-info">
+                    <h3>Vieni a Trovarci</h3>
+                    <p>
+                        La nostra azienda si trova nel cuore della Sicilia, nelle campagne di San Biagio Platani, 
+                        in provincia di Agrigento. Qui, tra colline dorate e uliveti secolari, 
+                        produciamo il nostro olio extravergine seguendo le tradizioni di famiglia.
+                    </p>
+                    <p>
+                        <strong>Visite in azienda:</strong> Organizziamo visite guidate per far conoscere 
+                        il nostro processo produttivo e degustare i nostri oli. Contattaci per prenotare 
+                        la tua visita.
+                    </p>
+
+                    <div class="location-details">
+                        <div class="location-item">
+                            <div class="location-icon">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <div class="location-text">
+                                <strong>Sede Amministrativa</strong>
+                                <span>Contrada Serre, 19 - San Biagio Platani (AG)</span>
+                            </div>
+                        </div>
+
+                        <div class="location-item">
+                            <div class="location-icon">
+                                <i class="fas fa-industry"></i>
+                            </div>
+                            <div class="location-text">
+                                <strong>Frantoio</strong>
+                                <span>Via Alcide De Gasperi, 4 - San Biagio Platani (AG)</span>
+                            </div>
+                        </div>
+
+                        <div class="location-item">
+                            <div class="location-icon">
+                                <i class="fas fa-car"></i>
+                            </div>
+                            <div class="location-text">
+                                <strong>Come Raggiungerci</strong>
+                                <span>A 60 km da Agrigento, facilmente raggiungibile in auto</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="map-placeholder">
+                    <div style="position: relative; z-index: 2;">
+                        <i class="fas fa-map-marked-alt" style="font-size: 48px; margin-bottom: 16px; color: #eab308;"></i>
+                        <p>San Biagio Platani, Agrigento</p>
+                        <p style="font-size: 14px; margin-top: 8px;">Sicilia, Italia</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social CTA Section -->
+    <section class="social-cta">
+        <div class="container">
+            <div class="social-content">
+                <h2 class="social-title">Seguici e Resta Aggiornato</h2>
+                <p class="social-description">
+                    Unisciti alla nostra comunità per scoprire ricette, consigli sull'olio extravergine 
+                    e le ultime novità dalla nostra azienda siciliana.
+                </p>
+
+                <div class="social-links">
+                    <a href="https://www.facebook.com/OliodiValeria/?locale=it_IT" target="_blank" rel="noopener noreferrer" class="social-link facebook">
+                        <i class="fab fa-facebook-f"></i>
+                        <span>Facebook</span>
+                    </a>
+                    <a href="https://www.instagram.com/oliodivaleria/" target="_blank" rel="noopener noreferrer" class="social-link instagram">
+                        <i class="fab fa-instagram"></i>
+                        <span>Instagram</span>
+                    </a>
+                </div>
+
+                <div class="newsletter-signup">
+                    <h3 class="newsletter-title">Newsletter</h3>
+                    <p class="newsletter-description">
+                        Ricevi ricette siciliane, consigli sull'olio e offerte esclusive direttamente nella tua casella di posta.
+                    </p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" class="newsletter-input" placeholder="La tua email" required>
+                        <button type="submit" class="newsletter-btn">
+                            <i class="fas fa-envelope"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="odvlogo.png" alt="l'Olio di Valeria">
+                    </div>
+                    <p class="footer-description">
+                        Tradizione siciliana dal 1987. Olio extravergine di oliva di qualità superiore 
+                        dalle terre di San Biagio Platani.
+                    </p>
+                    <div class="footer-details">
+                        <p>P.IVA: 02957530849</p>
+                        <p>Cod. Fisc.: LCTVLR81D62Z112B</p>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Prodotti</h4>
+                    <ul class="footer-links">
+                        <li><a href="shop.html">Olio Classico Siciliano</a></li>
+                        <li><a href="shop.html">Olio Biologico Premium</a></li>
+                        <li><a href="shop.html">Confezioni Regalo</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Azienda</h4>
+                    <ul class="footer-links">
+                        <li><a href="chisiamo.html">Chi Siamo</a></li>
+                        <li><a href="aziendaagr.html">La Nostra Storia</a></li>
+                        <li><a href="#">Certificazioni</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contatti</h4>
+                    <div class="footer-contact">
+                        <p>
+                            <strong>Sede Operativa:</strong><br>
+                            Via Alcide De Gasperi, 4<br>
+                            92020 San Biagio Platani (AG)
+                        </p>
+                        <p>
+                            <strong>Tel:</strong> +39 327 309 8513<br>
+                            <strong>Tel:</strong> +39 339 530 5990
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 l'Olio di Valeria - San Biagio Platani (AG). Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Contact Form Handler
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('.form-submit');
+            const successMessage = document.getElementById('successMessage');
+            
+            // Disable submit button
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Invio in corso...';
+            
+            // Simulate form submission
+            setTimeout(() => {
+                // Show success message
+                successMessage.classList.add('show');
+                
+                // Reset form
+                this.reset();
+                
+                // Re-enable submit button
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Invia Messaggio';
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    successMessage.classList.remove('show');
+                }, 5000);
+                
+                // Scroll to success message
+                successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 2000);
+        });
+
+        // Newsletter Form Handler
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const btn = this.querySelector('.newsletter-btn');
+            const input = this.querySelector('.newsletter-input');
+            
+            // Disable button
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            
+            // Simulate subscription
+            setTimeout(() => {
+                alert('Grazie per esserti iscritto alla nostra newsletter!');
+                input.value = '';
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-envelope"></i>';
+            }, 1500);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form validation enhancements
+        const formInputs = document.querySelectorAll('.form-input, .form-textarea, .form-select');
+        
+        formInputs.forEach(input => {
+            input.addEventListener('blur', function() {
+                if (this.hasAttribute('required') && !this.value.trim()) {
+                    this.style.borderColor = '#ef4444';
+                } else {
+                    this.style.borderColor = '#e5e7eb';
+                }
+            });
+            
+            input.addEventListener('input', function() {
+                if (this.style.borderColor === 'rgb(239, 68, 68)') {
+                    this.style.borderColor = '#e5e7eb';
+                }
+            });
+        });
+
+        // Contact item hover effects
+        const contactItems = document.querySelectorAll('.contact-item');
+        
+        contactItems.forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-4px)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
