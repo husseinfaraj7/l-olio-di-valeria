@@ -3652,6 +3652,17 @@ document.head.appendChild(style);
                 closeMobileMenu();
             }
         });
+       
+        // script.js or <script> in index.html
+fetch('https://l-olio-di-valeria.onrender.com/')
+  .then(response => response.json())
+  .then(data => {
+    console.log(data); // do something with the data
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
     </script>
 </body>
 </html>
