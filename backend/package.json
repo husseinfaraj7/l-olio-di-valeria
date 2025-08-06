@@ -1,5 +1,5 @@
 {
-  "name": "olio-backend",
+  "name": "l-olio-di-valeria",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -10,3 +10,4 @@
     "cors": "^2.8.5"
   }
 }
+
