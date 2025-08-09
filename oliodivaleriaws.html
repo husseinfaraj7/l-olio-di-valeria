@@ -3653,19 +3653,20 @@ document.head.appendChild(style);
             }
         });
        
-        // script.js or <script> in index.html
-fetch('https://l-olio-di-valeria.onrender.com/')
-  .then(response => response.json())
+       //fetch frontend-backend
+fetch('https://mybackend.onrender.com/api/hello')
+  .then(res => res.json())
   .then(data => {
-    console.log(data); // do something with the data
+    console.log(data.message);
+    document.body.innerHTML += `<p>${data.message}</p>`;
   })
-  .catch(error => {
-    console.error('Error:', error);
-  });
+  .catch(err => console.error('Error:', err));
+
 
     </script>
 </body>
 </html>
+
 
 
 
