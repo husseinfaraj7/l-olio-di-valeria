@@ -2,6 +2,10 @@
  * Placeholder Firebase configuration.
  * Replace the values below with your Firebase project settings and
  * ensure sensitive keys are stored securely (e.g. via environment configs).
+ *
+ * The project is deployed with Hosting only, so we intentionally do not
+ * import or initialize any Firebase SDKs here. When you decide to add
+ * extra Firebase products, do it explicitly and document the change.
  */
 export const firebaseConfig = {
   apiKey: '',
@@ -22,6 +26,6 @@ export function initializeFirebase(applyInit = true) {
     return null;
   }
 
-  console.warn('[Firebase] SDK not loaded yet. Add Firebase scripts before calling initializeFirebase.');
+  console.warn('[Firebase] SDK not loaded. Add Firebase scripts and enable the relevant services before calling initializeFirebase.');
   return null;
 }
