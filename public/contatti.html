@@ -445,10 +445,15 @@
             margin-bottom: 20px;
             transition: all 0.3s ease;
             border: 1px solid transparent;
+            opacity: 1;
         }
 
         .health-status-indicator i {
             font-size: 16px;
+        }
+
+        .health-status-indicator.fade-out {
+            opacity: 0;
         }
 
         .health-status-indicator.checking {
@@ -470,6 +475,16 @@
 
         .health-status-indicator.success i {
             color: #10b981;
+        }
+
+        .health-status-indicator.demo {
+            background: rgba(59, 130, 246, 0.08);
+            border-color: rgba(37, 99, 235, 0.25);
+            color: #1d4ed8;
+        }
+
+        .health-status-indicator.demo i {
+            color: #2563eb;
         }
 
         .health-status-indicator.error {
@@ -1537,68 +1552,34 @@ async function submitWithRetry(formData) {
     }
 }
 
-// Health Check System
-const healthCheck = {
-    status: null,
-    lastChecked: null,
-    checking: false,
+// Demo mode indicator so contributors know submissions stay local
+const demoStatus = {
+    displayed: false,
 
-    async performCheck() {
-        if (this.checking) return this.status;
-
-        this.checking = true;
-        this.updateUI('checking');
-
-        try {
-            let result = { status: 'ok' };
-            if (window.ContactPlaceholder && typeof window.ContactPlaceholder.checkHealth === 'function') {
-                result = await window.ContactPlaceholder.checkHealth();
-            }
-
-            this.status = result.status === 'error' ? 'error' : 'success';
-            this.lastChecked = Date.now();
-            this.updateUI(this.status);
-            return this.status;
-        } catch (error) {
-            console.error('Health check failed:', error);
-            this.status = 'error';
-            this.lastChecked = Date.now();
-            this.updateUI('error');
-            return 'error';
-        } finally {
-            this.checking = false;
-        }
-    },
-
-    updateUI(status) {
+    showActive(messageOverride) {
         const indicator = document.getElementById('healthStatus');
-        const icon = indicator.querySelector('i');
+        const icon = indicator?.querySelector('i');
         const text = document.getElementById('healthStatusText');
 
-        indicator.style.display = 'flex';
-        indicator.className = 'health-status-indicator ' + status;
+        if (!indicator || !icon || !text) {
+            return;
+        }
 
-        switch(status) {
-            case 'checking':
-                icon.className = 'fas fa-spinner';
-                text.textContent = 'Verifica connessione al server...';
-                break;
-            case 'success':
-                icon.className = 'fas fa-check-circle';
-                text.textContent = 'Server disponibile';
+        indicator.style.display = 'flex';
+        indicator.className = 'health-status-indicator demo';
+        icon.className = 'fas fa-house-lock';
+        text.textContent = messageOverride || 'Modalità demo attiva: l\'invio resta su Firebase Hosting.';
+
+        if (!this.displayed) {
+            this.displayed = true;
+            setTimeout(() => {
+                indicator.classList.add('fade-out');
                 setTimeout(() => {
                     indicator.style.display = 'none';
-                }, 3000);
-                break;
-            case 'error':
-                icon.className = 'fas fa-exclamation-circle';
-                text.textContent = 'Server non raggiungibile. Riprova più tardi.';
-                break;
+                    indicator.classList.remove('fade-out');
+                }, 400);
+            }, 4000);
         }
-    },
-
-    shouldRecheck() {
-        return this.status === null || this.status === 'error';
     }
 };
 
@@ -1606,14 +1587,8 @@ const healthCheck = {
 async function handleContactFormSubmit(e) {
     e.preventDefault();
     
-    // Check health status first
-    if (healthCheck.shouldRecheck()) {
-        await healthCheck.performCheck();
-        if (healthCheck.status === 'error') {
-            showMessage('error', 'Il server non è attualmente raggiungibile. Per favore riprova tra qualche minuto.');
-            return;
-        }
-    }
+    // Remind the user that the form is operating locally in demo mode
+    demoStatus.showActive();
     
     // Validate form
     if (!validateForm()) {
@@ -1653,9 +1628,7 @@ async function handleContactFormSubmit(e) {
         }
     } else if (result.error) {
         showMessage('error', result.error);
-        // Re-check health status on network error
-        healthCheck.status = 'error';
-        await healthCheck.performCheck();
+        demoStatus.showActive('Modalità demo: nessuna richiesta remota è stata inviata.');
     }
     
     setLoadingState(false);
@@ -2637,10 +2610,10 @@ function translateErrorMessage(message, fieldLabel) {
         // Initialize mobile menu and contact form when DOM is loaded
         document.addEventListener("DOMContentLoaded", () => {
             window.mobileMenu = new MobileMenu();
-            
-            // Perform health check
-            if (typeof healthCheck !== 'undefined') {
-                healthCheck.performCheck();
+
+            // Surface demo mode status for this page
+            if (typeof demoStatus !== 'undefined') {
+                demoStatus.showActive();
             }
             
             // Register the form submit handler
