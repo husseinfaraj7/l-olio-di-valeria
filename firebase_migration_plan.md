@@ -10,15 +10,14 @@ The goal of this plan is to bring the existing static website to a clean, organi
 
 ## 2. Initialize Firebase in the Project
 - Install the Firebase CLI locally and run `firebase login` with your Google account.
-- From the project root, run `firebase init` and enable only **Hosting** (and optionally **Functions** if you want placeholders).
+- From the project root, run `firebase init` and enable only **Hosting**. Decline every other Firebase product so the project remains simple.
 - When prompted, set `public/` as the hosting directory and choose single-page app routing only if the site needs it.
-- Commit the generated `firebase.json`, `.firebaserc`, and placeholder files.
+- Commit the generated `firebase.json` and `.firebaserc` files.
 
-## 3. Prepare Placeholder Backend Hooks
-- If you expect to add dynamic features later, create stub files:
-  - `functions/index.js` (or `functions/src/index.ts`) exporting empty Cloud Functions for future order/contact handling.
-  - A simple `/js/firebase-config.js` that loads environment variables but keeps values empty or commented.
-- Document where Firebase SDK initialization will happen in the frontend once credentials are added.
+## 3. Prepare Placeholder Front-end Hooks
+- If you expect to add dynamic features later, create stub files in the front end (inside `public/js/`) that simply log or simulate the intended behavior.
+- Keep Firebase SDK initialization out of the project until real credentials are available. If you want to document future setup, use comments in `firebase-config.js` without importing any Firebase libraries.
+- Describe where backend automation would live (e.g., external services or future Firebase Extensions) in project documentation rather than adding unused Firebase features now.
 
 ## 4. Basic Contact and Storefront Forms
 - Review existing forms (contact, newsletter, checkout). Keep their HTML structure but route submissions to placeholder JavaScript functions.
@@ -31,9 +30,9 @@ The goal of this plan is to bring the existing static website to a clean, organi
 - Confirm that the live site serves the reorganized structure and that console placeholders do not break navigation or forms.
 
 ## 6. Next Steps (For Future Work)
-- Replace placeholder Firebase configuration with real project credentials stored securely.
-- Implement Firestore/Realtime Database reads for product data and Cloud Functions for order processing when ready.
-- Connect an SMTP provider from Cloud Functions to send notifications to admins and customers.
+- Replace placeholder configuration with real project credentials stored securely once you are ready to opt into additional services.
+- Evaluate whether Firebase products such as Firestore or Cloud Functions are necessary; keep them disabled until there is a concrete requirement.
+- Connect external automations (SMTP provider, payment gateway, inventory tools) separately from the Hosting project so the core deployment stays static.
 - Expand e-commerce capabilities (cart persistence, payment gateway) incrementally after the basic deployment is stable.
 
 By completing the steps above, the project will have a clean static foundation ready to deploy to Firebase Hosting, giving you a solid base for the more advanced features you plan to add later.

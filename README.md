@@ -1,6 +1,6 @@
 # L'Olio di Valeria Static Site
 
-This repository contains the static marketing and e-commerce pages for l'Olio di Valeria. The codebase is being prepared for deployment to Firebase Hosting following the migration plan in `firebase_migration_plan.md`.
+This repository contains the static marketing and e-commerce pages for l'Olio di Valeria. The codebase is configured exclusively for Firebase **Hosting**, following the migration plan in `firebase_migration_plan.md`.
 
 ## Project Structure
 
@@ -42,5 +42,5 @@ The Firebase configuration files generated in this repository assume `public/` i
 
 ## Placeholder Back-end Hooks
 
-Placeholder scripts in `public/js/` (e.g., `contact.js`, `cart.js`, `firebase-config.js`) currently log submission data and display mock success/error messages. Replace these stubs with real Firebase integrations when backend services are ready.
+Placeholder scripts in `public/js/` (e.g., `contact.js`, `cart.js`, `firebase-config.js`) currently log submission data and display mock success/error messages. Replace these stubs with real integrations when backend services are ready. No additional Firebase products (Firestore, Functions, Authentication, etc.) are enabled in this repository so the deployment footprint remains Hosting-only.
 

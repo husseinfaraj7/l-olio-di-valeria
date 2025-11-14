@@ -1520,8 +1520,8 @@
                     ">
                         <div style="text-align: center;">
                             <div class="loading-spinner" style="width: 40px; height: 40px; border: 4px solid #e5e7eb; border-top: 4px solid #eab308; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 16px;"></div>
-                            <div style="color: #6b7280; font-weight: 600;">Processing your order...</div>
-                            <div style="color: #9ca3af; font-size: 14px; margin-top: 8px;">Please do not refresh the page</div>
+                            <div style="color: #6b7280; font-weight: 600;">Simulazione dell'ordine in corso...</div>
+                            <div style="color: #9ca3af; font-size: 14px; margin-top: 8px;">Non aggiornare la pagina durante la simulazione</div>
                         </div>
                     </div>
                 `;
@@ -1577,8 +1577,8 @@
                         <div style="display: flex; align-items: center; gap: 12px;">
                             <i class="fas fa-envelope-check" style="font-size: 20px;"></i>
                             <div>
-                                <div style="font-weight: 600; margin-bottom: 4px;">Email Sent Successfully!</div>
-                                <div style="font-size: 14px; opacity: 0.9;">Order confirmation sent to your email</div>
+                                <div style="font-weight: 600; margin-bottom: 4px;">Email demo inviata!</div>
+                                <div style="font-size: 14px; opacity: 0.9;">Conferma ordine simulata inviata al tuo indirizzo email</div>
                                 ${result.emailMessageId ? `<div style="font-size: 12px; opacity: 0.7; margin-top: 4px;">ID: ${result.emailMessageId}</div>` : ''}
                             </div>
                         </div>
@@ -1604,16 +1604,16 @@
                 // Categorize errors and provide specific guidance
                 if (error.message.includes('network') || error.message.includes('fetch')) {
                     errorTitle = 'Connection Error';
-                    errorMessage = 'Unable to connect to our servers. Please check your internet connection and try again.';
+                    errorMessage = 'Impossibile completare la simulazione offline. Controlla la tua connessione e riprova.';
                     errorIcon = 'fas fa-wifi';
                 } else if (error.message.includes('email')) {
                     errorTitle = 'Email Delivery Issue';
-                    errorMessage = 'Your order was processed but we could not send the confirmation email. You will receive it shortly.';
+                    errorMessage = 'Ordine simulato correttamente ma la notifica email demo non è stata generata.';
                     errorIcon = 'fas fa-envelope-open-text';
                     errorColor = '#f59e0b';
                 } else if (error.message.includes('payment')) {
                     errorTitle = 'Payment Processing Error';
-                    errorMessage = 'There was an issue processing your payment. Please check your payment details and try again.';
+                    errorMessage = 'Impossibile simulare il pagamento con i dati forniti. Controlla le informazioni e riprova.';
                     errorIcon = 'fas fa-credit-card';
                 } else if (error.message.includes('validation')) {
                     errorTitle = 'Order Validation Error';
@@ -1741,29 +1741,11 @@
                         };
                     }
 
-                    if (window.gtag) {
-                        gtag('event', 'purchase', {
-                            'transaction_id': handlerResult.transactionId || `ODV-${Date.now()}`,
-                            'value': orderData.totalAmount,
-                            'currency': 'EUR',
-                            'items': orderData.items
-                        });
-                    }
-
                     return handlerResult;
 
                 } catch (error) {
                     console.error('Order processing failed:', error);
-                    
-                    // Track order errors
-                    if (window.gtag) {
-                        gtag('event', 'checkout_error', {
-                            'event_category': 'ecommerce',
-                            'event_label': 'order_failed',
-                            'error_message': error.message
-                        });
-                    }
-                    
+
                     // Provide user-friendly error messages
                     if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
                         throw new Error('Problema di connessione. Controlla la tua connessione internet e riprova.');
@@ -1831,6 +1813,7 @@
                 }
                 
                 successMessage += 'I tuoi prodotti saranno spediti entro 2-3 giorni lavorativi.';
+                successMessage += ' Modalità demo attiva: nessun pagamento reale è stato processato.';
                 
                 // Update modal content with enhanced order details
                 if (orderResult && orderResult.orderId) {
